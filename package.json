@@ -1,0 +1,36 @@
+{
+  "name": "haystack",
+  "description": "Straw Demo",
+  "version": "0.0.1",
+  "homepage": "https://github.com/simonswain/haystack",
+  "author": {
+    "name": "Simon Swain",
+    "email": "simon@simonswain.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/simonswain/haystack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/simonswain/haystack/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/simonswain/haystack/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/haystack",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {
+    "straw": "~0.2.0",
+    "express": "~3.3.4",
+    "twitter": "~0.2.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": []
+}
