@@ -28,7 +28,8 @@
     "straw": "~0.2.0",
     "express": "~3.3.4",
     "twitter": "~0.2.1",
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "underscore": "~1.5.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1"

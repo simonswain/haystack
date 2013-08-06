@@ -15,16 +15,16 @@ app.configure(function(){
   app.use(express.methodOverride());
 });
 
-var tap = new straw.tap({
-  'input':'to-clients',
-});
+// io.sockets.on('connection', function (socket) {
+//   socket.emit('data', { at: new Date().getTime() });
+// });
 
-io.sockets.on('connection', function (socket) {
-  socket.emit('data', { at: new Date().getTime() });
+var tap = new straw.tap({
+  'input':'client-langs',
 });
 
 tap.on('message', function(msg) {
-  io.sockets.emit('data', {'hashtag':msg});
+  io.sockets.emit('langs', msg);
 });
 
 console.log("Haystack server listening on port 3000");

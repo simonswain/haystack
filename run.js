@@ -22,7 +22,8 @@ var topo = new straw.topology({
   },
   'catch-langs':{
     'node': __dirname + '/nodes/catch-langs.js',
-    'input': 'lang'
+    'input': 'lang',
+    'output': 'langs'
   },
   'catch-text':{
     'node': __dirname + '/nodes/catch-text.js',
@@ -38,10 +39,15 @@ var topo = new straw.topology({
     'input': 'hashtags',
     'output': 'trending-hashtags'
   },
-  'client-distributor':{
+  'client-hashtags':{
     'node': __dirname + '/nodes/passthru.js',
-    'input': 'hashtags',
-    'output': 'to-clients'
+    'input': 'trending-hashtags',
+    'output': 'clients-hashtags'
+  },
+  'client-langs':{
+    'node': __dirname + '/nodes/passthru.js',
+    'input': 'langs',
+    'output': 'client-langs'
   }
 }, {
   redis: config.redis,

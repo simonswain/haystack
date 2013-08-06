@@ -15,3 +15,12 @@ html {
     right: 8px;
     bottom: 8px;
 }
+
+.langs {
+    position: absolute;
+    background: #000;
+    top: 16px;
+    left: 16px;
+    width: 600px;
+    height: 200px;
+}
