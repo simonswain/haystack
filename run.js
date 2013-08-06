@@ -35,7 +35,11 @@ var topo = new straw.topology({
       'urls':'urls'
     }
   },
-
+  'catch-hashtags':{
+    'node': __dirname + '/nodes/catch-hashtags.js',
+    'input': 'hashtags',
+    'output': 'trending-hashtags'
+  }
 }, {
   redis: config.redis,
   statsd: config.statsd  

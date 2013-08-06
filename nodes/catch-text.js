@@ -31,7 +31,7 @@ module.exports = straw.node.extend({
     match = x.text.match(hashtagPattern);
     if(match) {
       var hashtag = match.shift();
-      console.log(hashtag);
+      //console.log(hashtag);
       self.output('hashtags', hashtag);
     }
 
