@@ -77,8 +77,8 @@ var Geo = function(opts){
   this.r = Raphael(this.el.attr('id'), this.w, this.h);
 
   this.add = function(point){
-    var x = 16 + (((90 + point[1])/360) * this.w);
-    var y = 16 + (((90 + point[0])/180) * this.h);
+    var x = 32 + (((90 + point[1])/360) * this.w);
+    var y = (this.h - ((90 + point[0])/180) * this.h);
     
     console.log(point, x, y);
     self.r.circle(x, y, 2).attr({fill: '#0ff'});
