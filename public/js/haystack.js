@@ -40,18 +40,17 @@ var Langs = function(opts){
   this.w = opts.el.width();
   this.h = opts.el.height(); 
   this.r = Raphael(this.el.attr('id'), this.w, this.h);
-
   this.render = function(){
     var h = this.h - 24;
     this.r.clear();
     var x = 16;
     var w = 8;
-    _.each(self.data, function(q, i){
+    _.each(self.data, function(q){
       self.r
-        .rect(x - (w/2), h-(h*q), w, (h*q))
+        .rect(x - (w/2), h-(h*q.share), w, (h*q.share))
         .attr({fill: '#fff'});
 
-      self.r.text(x, h + w, i).attr({fill: '#0ff'});
+      self.r.text(x, h + w, q.lang).attr({fill: '#0ff'});
       x += w*2;
     });
   }
@@ -59,7 +58,13 @@ var Langs = function(opts){
   opts.socket.bind(
     'langs', 
     function(data){
-      self.data = data;
+      self.data = 
+        _.first(
+          _.sortBy(
+            _.map(
+              data, function(x, i){return {lang: i, share: x};}),
+            function(x){return 0 - x.share;})
+          , 20);
       self.render();
     });
 
