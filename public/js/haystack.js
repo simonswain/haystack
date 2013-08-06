@@ -79,9 +79,8 @@ var Geo = function(opts){
   this.add = function(point){
     var x = 32 + (((90 + point[1])/360) * this.w);
     var y = (this.h - ((90 + point[0])/180) * this.h);
-    
-    console.log(point, x, y);
-    self.r.circle(x, y, 2).attr({fill: '#0ff'});
+    var g =self.r.circle(x, y, 1).attr({fill: '#f00', 'stroke':false});
+    g.animate({ fill: "#0ff" }, 500);
   }
 
   opts.socket.bind(
