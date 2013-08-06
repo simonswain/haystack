@@ -15,6 +15,9 @@ app.configure(function(){
   app.use(express.methodOverride());
 });
 
+var geos = [];
+var geo_max = 1000;
+
 var taps = {
   langs: new straw.tap({
     'input':'client-langs',
@@ -30,6 +33,16 @@ taps.langs.on('message', function(msg) {
 
 taps.geo.on('message', function(msg) {
   io.sockets.emit('geo', msg);
+  geos.push(msg);
+  if(geos.length > geo_max){
+    geos.shift();
+  }
+});
+
+io.sockets.on('connection', function (socket) {
+  for(var i=0, ii=geos.length; i<ii; i++){
+    io.sockets.emit('geo', geos[i]);
+  }
 });
 
 console.log("Haystack server listening on port 3000");
