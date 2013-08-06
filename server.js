@@ -1,16 +1,30 @@
 var express = require('express');
-var express = require('express');
+var http = require('http');
+var config = require('./config/config.js');
+var straw = require('straw');
 
 var app = express();
-app.port = 3000;
-var server;
+var server = app.listen(config.server.port);
+var io = require('socket.io').listen(server);
 
-server = require('http').createServer(app);
-app.use(express.logger('dev'));
-app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+app.configure(function(){
+  app.use(express.logger('dev'));
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(express.static(__dirname + '/public'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+});
 
-app.use(express.static(__dirname + '/public'));
-app.use(express.methodOverride());
-app.use(express.bodyParser());
+var tap = new straw.tap({
+  'input':'to-clients',
+});
 
-server.listen(app.port);
+io.sockets.on('connection', function (socket) {
+  socket.emit('data', { at: new Date().getTime() });
+});
+
+tap.on('message', function(msg) {
+  io.sockets.emit('data', {'hashtag':msg});
+});
+
+console.log("Haystack server listening on port 3000");

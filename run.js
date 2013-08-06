@@ -35,7 +35,11 @@ var topo = new straw.topology({
       'urls':'urls'
     }
   },
-
+  'client-distributor':{
+    'node': __dirname + '/nodes/passthru.js',
+    'input': 'hashtags',
+    'output': 'to-clients'
+  }
 }, {
   redis: config.redis,
   statsd: config.statsd  
