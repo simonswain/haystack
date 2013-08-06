@@ -1,8 +1,6 @@
 var straw = require('straw');
 var config = require('./config/config.js');
 
-//var topology = require('./topology.js');
-
 var topo = new straw.topology({
   'consume-firehose':{
     'node': __dirname + '/nodes/consume-firehose.js',
