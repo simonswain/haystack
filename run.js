@@ -11,15 +11,15 @@ var topo = new straw.topology({
     'node': __dirname + '/nodes/route-tweets.js',
     'input': 'raw-tweets',
     'outputs': {
-      'geo': 'geo',
+      'geo': 'client-geo',
       'lang': 'lang',
       'text': 'text'
     }
   },
-  'catch-geo':{
-    'node': __dirname + '/nodes/catch-geo.js',
-    'input': 'geo'
-  },
+  // 'catch-geo':{
+  //   'node': __dirname + '/nodes/catch-geo.js',
+  //   'input': 'geo'
+  // },
   'catch-langs':{
     'node': __dirname + '/nodes/catch-langs.js',
     'input': 'lang',
@@ -34,16 +34,16 @@ var topo = new straw.topology({
       'urls':'urls'
     }
   },
-  'catch-hashtags':{
-    'node': __dirname + '/nodes/catch-hashtags.js',
-    'input': 'hashtags',
-    'output': 'trending-hashtags'
-  },
-  'client-hashtags':{
-    'node': __dirname + '/nodes/passthru.js',
-    'input': 'trending-hashtags',
-    'output': 'clients-hashtags'
-  },
+  // 'catch-hashtags':{
+  //   'node': __dirname + '/nodes/catch-hashtags.js',
+  //   'input': 'hashtags',
+  //   'output': 'trending-hashtags'
+  // },
+  // 'client-hashtags':{
+  //   'node': __dirname + '/nodes/passthru.js',
+  //   'input': 'trending-hashtags',
+  //   'output': 'clients-hashtags'
+  // },
   'client-langs':{
     'node': __dirname + '/nodes/passthru.js',
     'input': 'langs',

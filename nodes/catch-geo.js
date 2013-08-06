@@ -8,7 +8,7 @@ module.exports = straw.node.extend({
   },
   process: function(x, done) {
     var self = this;
-    //console.log(JSON.stringify(x));
+    console.log(JSON.stringify(x));
     done();
   }
 });

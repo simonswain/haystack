@@ -24,3 +24,12 @@ html {
     width: 600px;
     height: 200px;
 }
+
+.geo {
+    position: absolute;
+    background: #000;
+    bottom: 16px;
+    left: 16px;
+    width: 600px;
+    height: 400px;
+}

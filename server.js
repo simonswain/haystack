@@ -5,7 +5,7 @@ var straw = require('straw');
 
 var app = express();
 var server = app.listen(config.server.port);
-var io = require('socket.io').listen(server);
+var io = require('socket.io').listen(server,{log: false});
 
 app.configure(function(){
   app.use(express.logger('dev'));
@@ -15,16 +15,21 @@ app.configure(function(){
   app.use(express.methodOverride());
 });
 
-// io.sockets.on('connection', function (socket) {
-//   socket.emit('data', { at: new Date().getTime() });
-// });
+var taps = {
+  langs: new straw.tap({
+    'input':'client-langs',
+  }),
+  geo: new straw.tap({
+    'input':'client-geo',
+  }),
+};
 
-var tap = new straw.tap({
-  'input':'client-langs',
+taps.langs.on('message', function(msg) {
+  io.sockets.emit('langs', msg);
 });
 
-tap.on('message', function(msg) {
-  io.sockets.emit('langs', msg);
+taps.geo.on('message', function(msg) {
+  io.sockets.emit('geo', msg);
 });
 
 console.log("Haystack server listening on port 3000");

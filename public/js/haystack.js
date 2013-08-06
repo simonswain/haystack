@@ -6,6 +6,11 @@ $(function(){
     socket: socket
   });
 
+  var geo = new Geo({
+    el: $('.geo'),
+    socket: socket
+  });
+
 });
 
 var Socket = function(done){
@@ -19,19 +24,22 @@ var Socket = function(done){
     self.trigger('langs', data);
   });
 
+  socket.on('geo', function (data) {
+    self.trigger('geo', data);
+  });
+
 }
 
 var Langs = function(opts){
 
   var self = this;
   this.data = {};
-  
-  this.h = $
 
   this.el = opts.el;
-  this.h = opts.el.height();
   
-  this.r = Raphael(this.el.attr('id'), 600, this.h);
+  this.w = opts.el.width();
+  this.h = opts.el.height(); 
+  this.r = Raphael(this.el.attr('id'), this.w, this.h);
 
   this.render = function(){
     var h = this.h - 24;
@@ -53,6 +61,33 @@ var Langs = function(opts){
     function(data){
       self.data = data;
       self.render();
+    });
+
+}
+
+
+var Geo = function(opts){
+
+  var self = this;
+  
+  this.el = opts.el;
+
+  this.w = opts.el.width();
+  this.h = opts.el.height(); 
+  this.r = Raphael(this.el.attr('id'), this.w, this.h);
+
+  this.add = function(point){
+    var x = 16 + (((90 + point[1])/360) * this.w);
+    var y = 16 + (((90 + point[0])/180) * this.h);
+    
+    console.log(point, x, y);
+    self.r.circle(x, y, 2).attr({fill: '#0ff'});
+  }
+
+  opts.socket.bind(
+    'geo', 
+    function(data){
+      self.add(data);
     });
 
 }
