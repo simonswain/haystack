@@ -36,9 +36,16 @@ exports.twitter = {
 }
 ```
 
-Start Haystack
+Start data collection and processing
 
 ```bash 
 ~/haystack$ node run
 ```
 
+Open another shell and start the webserver
+
+```bash 
+~/haystack$ node server
+```
+
+Open `http://localhost:3000` to see some results.
