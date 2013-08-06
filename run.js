@@ -1,8 +1,6 @@
 var straw = require('straw');
 var config = require('./config/config.js');
 
-//var topology = require('./topology.js');
-
 var topo = new straw.topology({
   'consume-firehose':{
     'node': __dirname + '/nodes/consume-firehose.js',
@@ -39,6 +37,11 @@ var topo = new straw.topology({
     'node': __dirname + '/nodes/catch-hashtags.js',
     'input': 'hashtags',
     'output': 'trending-hashtags'
+  },
+  'client-distributor':{
+    'node': __dirname + '/nodes/passthru.js',
+    'input': 'hashtags',
+    'output': 'to-clients'
   }
 }, {
   redis: config.redis,

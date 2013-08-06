@@ -1,0 +1,17 @@
+html {
+    background: #000;
+    color: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.app {
+    position: absolute;
+    background: #222;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+}
