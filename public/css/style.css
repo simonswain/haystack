@@ -10,26 +10,25 @@ html {
 .app {
     position: absolute;
     background: #222;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
-}
-
-.langs {
-    position: absolute;
-    background: #000;
-    top: 16px;
-    left: 16px;
-    width: 600px;
-    height: 200px;
+    margin: auto;
+    width: 1024px;
+    height: 768px;
 }
 
 .geo {
     position: absolute;
     background: #000;
+    top: 16px;
+    left: 16px;
+    width: 1008px;
+    height: 400px;
+}
+
+.langs {
+    position: absolute;
+    background: #000;
     bottom: 16px;
     left: 16px;
-    width: 600px;
-    height: 400px;
+    width: 352px;
+    height: 100px;
 }

@@ -1,5 +1,7 @@
 $(function(){
 
+  resize();
+
   var socket = new Socket();
   var langs = new Langs({
     el: $('.langs'),
@@ -12,6 +14,25 @@ $(function(){
   });
 
 });
+
+var resize = function(){
+
+  var margin = 16;
+
+  var w = $(window).width() - (margin);
+  var h = $(window).height() - (margin);
+
+  $('.app').css({
+    width: w,
+    height: h
+  });
+
+  $('.geo').css({
+    width: w - (2*parseInt($('.geo').css('left'))),
+    height: Math.floor(h * 0.5)
+  });
+
+}
 
 var Socket = function(done){
 
@@ -45,12 +66,13 @@ var Langs = function(opts){
     this.r.clear();
     var x = 16;
     var w = 8;
+    var f = self.data[0].share;
     _.each(self.data, function(q){
       self.r
-        .rect(x - (w/2), h-(h*q.share), w, (h*q.share))
+        .rect(x - (w/2), h-(h*(q.share/f))+8, w, (h*(q.share/f)))
         .attr({fill: '#fff'});
 
-      self.r.text(x, h + w, q.lang).attr({fill: '#0ff'});
+      self.r.text(x, h + w + 8, q.lang).attr({fill: '#0ff'});
       x += w*2;
     });
   }
@@ -82,7 +104,7 @@ var Geo = function(opts){
   this.r = Raphael(this.el.attr('id'), this.w, this.h);
 
   this.add = function(point){
-    var x = 32 + (((90 + point[1])/360) * this.w);
+    var x = (((180 + point[1])/360) * this.w);
     var y = (this.h - ((90 + point[0])/180) * this.h);
     var g =self.r.circle(x, y, 1).attr({fill: '#f00', 'stroke':false});
     g.animate({ fill: "#0ff" }, 500);
