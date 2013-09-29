@@ -17,7 +17,14 @@ html {
 
 .geo {
     position: absolute;
-    background: #000;
+    top: 16px;
+    left: 16px;
+    width: 1008px;
+    height: 400px;
+}
+
+.map {
+    position: absolute;
     top: 16px;
     left: 16px;
     width: 1008px;

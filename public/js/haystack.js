@@ -1,3 +1,6 @@
+Math.RADTODEG = 180 / Math.PI;
+Math.DEGTORAD = Math.PI / 180;
+
 $(function(){
 
   resize();
@@ -13,7 +16,15 @@ $(function(){
     socket: socket
   });
 
+  var map = new Map({
+    el: $('.map'),
+    geo: geo
+  })
+
 });
+
+var transform = function(point) {
+}
 
 var resize = function(){
 
@@ -29,10 +40,17 @@ var resize = function(){
 
   $('.geo').css({
     width: w - (2*parseInt($('.geo').css('left'))),
-    height: Math.floor(h * 0.5)
+    height: Math.floor(h * 0.5)    
   });
 
+  $('.map').css({
+    width: $('.geo').width(),
+    height: $('.geo').height()
+  });
+  
 }
+
+var d = [];
 
 var Socket = function(done){
 
@@ -46,7 +64,8 @@ var Socket = function(done){
   });
 
   socket.on('geo', function (data) {
-    self.trigger('geo', data);
+    d.push(data);
+    self.trigger('geo', {x: data[1], y: data[0]});
   });
 
 }
@@ -92,6 +111,14 @@ var Langs = function(opts){
 
 }
 
+var Map = function (opts) {
+
+  // this.el = opts.el;
+  // this.w = opts.el.width();
+  // this.h = opts.el.height(); 
+
+  // this.r = Raphael(this.el.attr('id'), this.w, this.h);
+}
 
 var Geo = function(opts){
 
@@ -104,11 +131,26 @@ var Geo = function(opts){
   this.r = Raphael(this.el.attr('id'), this.w, this.h);
 
   this.add = function(point){
-    var x = (((180 + point[1])/360) * this.w);
-    var y = (this.h - ((90 + point[0])/180) * this.h);
-    var g =self.r.circle(x, y, 1).attr({fill: '#f00', 'stroke':false});
-    g.animate({ fill: "#0ff" }, 500);
+    
+    point.y *= -1;
+
+    Math.DEGTORAD = Math.PI / 180;
+
+    var x = (point.x + 180) / 180 * this.w / 2;
+    var y = Math.sin(point.y * Math.DEGTORAD) * this.h / 2 + this.h / 2; 
+    
+    var g = self.r.circle(x, y, 20).attr({fill: '#ffff00', 'stroke':false});
+    ///var t = self.r.text(x, y, '' + point.x + ', ' + point.y);
+    g.animate({ opacity: 1, r:2, fill: "#000000" }, 2000);
   }
+
+  // for(var i=0;i<360;i+=15) {
+  //   self.add({x: i-180, y: i/2-90});
+  // }
+
+  self.add({y: 33.868, x:151.211});
+  self.add({y: -34.0522, x:-118.24});
+  self.add({y:-40.71, x: -74.0064});
 
   opts.socket.bind(
     'geo', 
