@@ -11,22 +11,14 @@ html {
     position: absolute;
     background: #222;
     margin: auto;
-    width: 1024px;
+    min-width: 1024px;
     height: 768px;
-}
-
-.geo {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    width: 1008px;
-    height: 400px;
 }
 
 .map {
     position: absolute;
     top: 16px;
-    left: 16px;
+    left: 0;
     width: 1008px;
     height: 400px;
 }

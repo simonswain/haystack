@@ -11,20 +11,17 @@ $(function(){
     socket: socket
   });
 
-  var geo = new Geo({
-    el: $('.geo'),
-    socket: socket
+  Map(function(map){
+    var geo = new Geo({
+      map: map,
+      socket: socket
+    });
+
+
   });
 
-  var map = new Map({
-    el: $('.map'),
-    geo: geo
-  })
 
 });
-
-var transform = function(point) {
-}
 
 var resize = function(){
 
@@ -38,14 +35,9 @@ var resize = function(){
     height: h
   });
 
-  $('.geo').css({
-    width: w - (2*parseInt($('.geo').css('left'))),
-    height: Math.floor(h * 0.5)    
-  });
-
   $('.map').css({
-    width: $('.geo').width(),
-    height: $('.geo').height()
+    top: margin,
+    left: (w - $('.map').width())/2
   });
   
 }
@@ -65,7 +57,7 @@ var Socket = function(done){
 
   socket.on('geo', function (data) {
     d.push(data);
-    self.trigger('geo', {x: data[1], y: data[0]});
+    self.trigger('geo', {lng: data[0], lat: data[1]});
   });
 
 }
@@ -111,19 +103,35 @@ var Langs = function(opts){
 
 }
 
-var Map = function (opts) {
-
-  // this.el = opts.el;
-  // this.w = opts.el.width();
-  // this.h = opts.el.height(); 
-
-  // this.r = Raphael(this.el.attr('id'), this.w, this.h);
-}
-
 var Geo = function(opts){
 
   var self = this;
-  
+  var map = opts.map;
+
+  this.add = function(point){
+    map.r
+      .circle()
+      .attr({fill: "#ff0", stroke: false, r: 5})
+      .attr(map.getXY(point.lng, point.lat))
+      .animate({ opacity: 0.25, r:2, fill: "#c00" }, 2000);
+  };
+
+  opts.socket.bind(
+    'geo', 
+    function(data){
+      self.add(data);
+    });
+
+}
+
+
+
+
+
+var GeoSolo = function(opts){
+
+  var self = this;
+
   this.el = opts.el;
 
   this.w = opts.el.width();
