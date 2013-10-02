@@ -9,9 +9,6 @@ module.exports = straw.node.extend({
   process: function(x, done) {
     var self = this;
 
-    //console.log(x.lang, x.user.screen_name, x.text);
-
-   
     if(x.hasOwnProperty('geo') && x.geo && x.geo.hasOwnProperty('type') && x.geo.type == 'Point'){
       console.log(JSON.stringify(x.geo.coordinates));
       self.output('geo', x.geo.coordinates);
