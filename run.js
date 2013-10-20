@@ -1,3 +1,8 @@
+// Haystack 0.0.1
+// (c) 2013 Simon Swain
+// Haystack may be freely distributed under the MIT license.
+// https://github.com/simonswain/haystack
+
 var straw = require('straw');
 var config = require('./config/config.js');
 

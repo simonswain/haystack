@@ -56,3 +56,10 @@ Open another shell and start the webserver
 ```
 
 Open `http://localhost:3000` to see some results.
+
+= Licence
+
+(c) 2013 Simon Swain
+Haystack may be freely distributed under the MIT license.
+
+https://github.com/simonswain/haystack
