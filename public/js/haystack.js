@@ -8,18 +8,9 @@
 /*jshint strict:false */
 
 var resize = function(){
-  var margin = 16;
-  var w = $(window).width() - (margin);
-  var h = $(window).height() - (margin);
 
   $('.app').css({
-    width: w,
-    height: h
-  });
-
-  $('.map').css({
-    top: margin,
-    left: (w - $('.map').width())/2
+    top: ($(window).height() - $('.app').height())/2
   });
 
 };
@@ -113,7 +104,7 @@ var Geo = function(opts){
 
 var Hashtags = function(opts){
   var el = opts.el;
-  var tpl = _.template('<div>#<%= hashtag %> <span><%= count %></span></div>');
+  var tpl = _.template('<div><strong>#<%= hashtag %></strong> <span><%= count %></span></div>');
 
   opts.socket.bind(
     'hashtags',

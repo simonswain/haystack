@@ -1,5 +1,5 @@
 html {
-    background: #000;
+    background: #262626;
     color: #fff;
     font-family: arial;
 }
@@ -9,24 +9,24 @@ html {
 }
 
 .app {
-    position: absolute;
+    position: relative;
     background: #222;
     margin: auto;
-    min-width: 1024px;
-    height: 768px;
+    width: 1280px;
+    height: 664px;
+    border: 1px solid #111;
 }
 
 .map {
     position: absolute;
-    top: 16px;
-    left: 0;
+    top: 80px;
+    left: 24px;
     width: 1008px;
     height: 400px;
 }
 
 .langs {
     position: absolute;
-    background: #000;
     bottom: 16px;
     left: 16px;
     width: 352px;
@@ -35,18 +35,17 @@ html {
 
 .hashtags {
     position: absolute;
-    background: #000;
-    bottom: 16px;
+    top: 32px;
     right: 16px;
-    width: 352px;
-    height: 128px;
+    width: 200px;
+    height: 628px;
     font-size: 10pt;
     color: #fff;  
 }
 
 .hashtags div {
+    position: relative;
     padding: 4px;
-    border-bottom: 1px solid #222;
 }
 
 .hashtags div:last-child {
@@ -54,6 +53,18 @@ html {
 }
 
 .hashtags span {
-    float: right;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    display: block;
+    width: 20px;
     color: #0cc;
+    text-align: right;
 }
+
+.hashtags strong {
+    display: block;
+    padding-left: 24px;
+    font-weight: normal;
+}
+
