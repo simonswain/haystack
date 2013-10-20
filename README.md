@@ -1,7 +1,9 @@
 haystack
 ========
 
-Haystack - Straw Twitter Consumer
+Haystack - Straw base Twitter consumer.
+
+This is an example of how to use [Straw](https://strawjs.com)
 
 # Installing
 
