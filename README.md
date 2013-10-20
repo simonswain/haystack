@@ -43,7 +43,9 @@ exports.twitter = {
 }
 ```
 
-Start data collection and processing
+# Run It
+
+Run the Straw topology to start data collection and processing
 
 ```bash 
 ~/haystack$ node run
@@ -57,7 +59,7 @@ Open another shell and start the webserver
 
 Open `http://localhost:3000` to see some results.
 
-= Licence
+# Licence
 
 (c) 2013 Simon Swain
 Haystack may be freely distributed under the MIT license.
