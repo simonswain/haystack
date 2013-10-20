@@ -61,7 +61,6 @@ module.exports = straw.node.extend({
     trending = trending.slice(0, 5);
 
     this.changed = false;
-    console.log(JSON.stringify(trending));
     this.output(trending);
   }
 
