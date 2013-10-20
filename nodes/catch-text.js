@@ -5,7 +5,6 @@ var urlPattern = new RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-
 var hashtagPattern = new RegExp(/(#[0-9A-Za-z\-]*)/);
 var atPattern = new RegExp(/(@[0-9A-Za-z\-]*)/);
 
-
 module.exports = straw.node.extend({
   title: 'Catch Text',
   initialize: function(opts, done) {
@@ -38,7 +37,7 @@ module.exports = straw.node.extend({
     var newWords = [], words = x.text.split(' ');
 
     for(var i in words){
-      if(! (words[i].match(hashtagPattern) ||
+      if(!(words[i].match(hashtagPattern) ||
             words[i].match(urlPattern) ||
             words[i].match(atPattern))) {
         newWords.push(words[i]);

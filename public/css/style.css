@@ -1,6 +1,7 @@
 html {
     background: #000;
     color: #fff;
+    font-family: arial;
 }
 
 * {
@@ -29,5 +30,29 @@ html {
     bottom: 16px;
     left: 16px;
     width: 352px;
-    height: 100px;
+    height: 128px;
+}
+
+.hashtags {
+    position: absolute;
+    background: #000;
+    bottom: 16px;
+    right: 16px;
+    width: 352px;
+    height: 128px;
+    font-size: 10pt;
+    color: #fff;  
+}
+
+.hashtags div {
+    padding: 4px;
+    border-bottom: 1px solid #222;
+}
+
+.hashtags div:last-child {
+    border-bottom: none;
+}
+
+.hashtags span {
+    float: right;
 }

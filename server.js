@@ -19,6 +19,9 @@ app.configure(function(){
 var geos = [];
 var geo_max = 1000;
 
+var langs = [];
+var hashtags = [];
+
 var taps = {
   langs: new straw.tap({
     'input':'client-langs',
@@ -26,10 +29,19 @@ var taps = {
   geo: new straw.tap({
     'input':'client-geo',
   }),
+  hashtags: new straw.tap({
+    'input':'client-hashtags',
+  })
 };
 
 taps.langs.on('message', function(msg) {
+  langs = msg;
   io.sockets.emit('langs', msg);
+});
+
+taps.hashtags.on('message', function(msg) {
+  hashtags = msg;
+  io.sockets.emit('hashtags', msg);
 });
 
 taps.geo.on('message', function(msg) {
@@ -44,6 +56,8 @@ io.sockets.on('connection', function (socket) {
   for(var i=0, ii=geos.length; i<ii; i++){
     io.sockets.emit('geo', geos[i]);
   }
+  io.sockets.emit('langs', langs);
+  io.sockets.emit('hashtags', hashtags);
 });
 
 console.log("Haystack server listening on port 3000");

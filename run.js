@@ -16,10 +16,6 @@ var topo = new straw.topology({
       'text': 'text'
     }
   },
-  // 'catch-geo':{
-  //   'node': __dirname + '/nodes/catch-geo.js',
-  //   'input': 'geo'
-  // },
   'catch-langs':{
     'node': __dirname + '/nodes/catch-langs.js',
     'input': 'lang',
@@ -29,21 +25,21 @@ var topo = new straw.topology({
     'node': __dirname + '/nodes/catch-text.js',
     'input': 'text',
     'outputs':{
-      'hashtags':'hashtags',
-      'words':'words',
-      'urls':'urls'
+      // 'words':'words',
+      // 'urls':'urls',
+      'hashtags':'hashtags'
     }
   },
-  // 'catch-hashtags':{
-  //   'node': __dirname + '/nodes/catch-hashtags.js',
-  //   'input': 'hashtags',
-  //   'output': 'trending-hashtags'
-  // },
-  // 'client-hashtags':{
-  //   'node': __dirname + '/nodes/passthru.js',
-  //   'input': 'trending-hashtags',
-  //   'output': 'clients-hashtags'
-  // },
+  'catch-hashtags':{
+    'node': __dirname + '/nodes/catch-hashtags.js',
+    'input': 'hashtags',
+    'output': 'client-hashtags'
+  },
+  'client-hashtags':{
+    'node': __dirname + '/nodes/passthru.js',
+    'input': 'trending-hashtags',
+    'output': 'client-hashtags'
+  },
   'client-langs':{
     'node': __dirname + '/nodes/passthru.js',
     'input': 'langs',

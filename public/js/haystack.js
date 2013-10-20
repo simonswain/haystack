@@ -11,6 +11,11 @@ $(function(){
     socket: socket
   });
 
+  var hashtags = new Hashtags({
+    el: $('.hashtags'),
+    socket: socket
+  });
+
   Map(function(map){
     var geo = new Geo({
       map: map,
@@ -53,6 +58,10 @@ var Socket = function(done){
 
   socket.on('langs', function (data) {
     self.trigger('langs', data);
+  });
+
+  socket.on('hashtags', function (data) {
+    self.trigger('hashtags', data);
   });
 
   socket.on('geo', function (data) {
@@ -125,8 +134,21 @@ var Geo = function(opts){
 }
 
 
+var Hashtags = function(opts){
 
+  var el = opts.el;
 
+  var tpl = _.template('<div>#<%= hashtag %> <span><%= count %></span></div>');
+
+  opts.socket.bind(
+    'hashtags', 
+    function(data){
+      el.html('');
+      _.each(data, function(x){
+        el.append(tpl(x));
+      });
+    });
+}
 
 var GeoSolo = function(opts){
 

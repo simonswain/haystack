@@ -44,12 +44,15 @@ module.exports = straw.node.extend({
 
     var trending = [];
 
-    for(var i in this.hashtags) {
-      trending.push({k:i,v:this.hashtags[i]});
+    for(var hashtag in this.hashtags) {
+      trending.push({
+        hashtag: hashtag,
+        count :this.hashtags[hashtag]
+      });
     }
 
     trending.sort(function (a,b) {
-      return b.v-a.v;
+      return b.count - a.count;
     });
 
     trending = trending.slice(0, 5);
