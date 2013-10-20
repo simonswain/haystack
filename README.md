@@ -1,11 +1,11 @@
-haystack
+Haystack
 ========
 
-Haystack - Straw base Twitter consumer.
+A Straw base Twitter consumer.
 
 This is an example of how to use [Straw](https://strawjs.com)
 
-# Installing
+## Installing
 
 Ensure you have Redis
 
@@ -45,7 +45,7 @@ exports.twitter = {
 }
 ```
 
-# Run It
+## Run It
 
 Run the Straw topology to start data collection and processing
 
@@ -61,7 +61,7 @@ Open another shell and start the webserver
 
 Open `http://localhost:3000` to see some results.
 
-# Licence
+## Licence
 
 (c) 2013 Simon Swain
 
