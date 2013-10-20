@@ -14,7 +14,9 @@ var Events = {
         calls[ev] = [];
       } else {
         var list = calls[ev];
-        if (!list) return this;
+        if (!list) {
+          return this;
+        }
         for (var i = 0, l = list.length; i < l; i++) {
           if (list[i] && callback === list[i][0]) {
             list[i] = null;
@@ -28,7 +30,9 @@ var Events = {
   trigger : function(eventName) {
     var list, calls, ev, callback, args;
     var both = 2;
-    if (!(calls = this._callbacks)) return this;
+    if (!(calls = this._callbacks)) {
+      return this;
+    }
     while (both--) {
       ev = both ? eventName : 'all';
       if (list = calls[ev]) {

@@ -1,5 +1,13 @@
+/*global Raphael: true, worldmap: true */
+/*jshint browser:true */
+/*jshint strict:false */
+
+/*jshint -W079 */
 var Map = function(done){
+  /*jshint +W079 */
+  /*jshint newcap:false */
   Raphael('map', 1000, 400, function () {
+    /*jshint newcap:true */
     var r = this;
     r.setStart();
     for (var country in worldmap.shapes) {
@@ -27,11 +35,11 @@ var Map = function(done){
     world.parseLatLon = function (latlon) {
       var m = String(latlon).split(latlonrg),
       lat = m && +m[1] + (m[2] || 0) / 60 + (m[3] || 0) / 3600;
-      if (m[4].toUpperCase() == "S") {
+      if (m[4].toUpperCase() === "S") {
         lat = -lat;
       }
       var lon = m && +m[6] + (m[7] || 0) / 60 + (m[8] || 0) / 3600;
-      if (m[9].toUpperCase() == "W") {
+      if (m[9].toUpperCase() === "W") {
         lon = -lon;
       }
       return this.getXY(lat, lon);
