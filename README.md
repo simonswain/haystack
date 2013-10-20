@@ -1,7 +1,7 @@
 Haystack
 ========
 
-A Straw base Twitter consumer.
+A Straw based Twitter consumer.
 
 This is an example of how to use [Straw](https://strawjs.com)
 
