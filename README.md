@@ -11,12 +11,19 @@ Ensure you have Redis
 sudo apt-get install redis-server
 ```
 
+Ensure you have Bower
+
+```bash
+npm install bower -g
+```
+
 Install Haystack and it's dependencies
 
 ```bash
-git clone git@github.com:simonswain/haystack.git
+git clone https://github.com/simonswain/haystack.git
 cd haystack
-npm install -d
+npm install
+bower install
 ```
 
 Create the config file
