@@ -27,7 +27,7 @@ module.exports = straw.node.extend({
   run: function(done) {
     var self = this;
     var fn = function() {
-      self.ping();
+      self.count();
     };
     this.timer = setInterval(fn, this.opts.interval);
     done(false);
@@ -36,7 +36,7 @@ module.exports = straw.node.extend({
     clearInterval(this.timer);
     done(false);
   },
-  ping: function() {
+  count: function() {
 
     if(!this.changed){
       return;
