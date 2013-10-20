@@ -1,6 +1,3 @@
-Math.RADTODEG = 180 / Math.PI;
-Math.DEGTORAD = Math.PI / 180;
-
 $(function(){
 
   resize();
@@ -149,46 +146,3 @@ var Hashtags = function(opts){
       });
     });
 }
-
-var GeoSolo = function(opts){
-
-  var self = this;
-
-  this.el = opts.el;
-
-  this.w = opts.el.width();
-  this.h = opts.el.height(); 
-  this.r = Raphael(this.el.attr('id'), this.w, this.h);
-
-  this.add = function(point){
-    
-    point.y *= -1;
-
-    Math.DEGTORAD = Math.PI / 180;
-
-    var x = (point.x + 180) / 180 * this.w / 2;
-    var y = Math.sin(point.y * Math.DEGTORAD) * this.h / 2 + this.h / 2; 
-    
-    var g = self.r.circle(x, y, 20).attr({fill: '#ffff00', 'stroke':false});
-    ///var t = self.r.text(x, y, '' + point.x + ', ' + point.y);
-    g.animate({ opacity: 1, r:2, fill: "#000000" }, 2000);
-  }
-
-  // for(var i=0;i<360;i+=15) {
-  //   self.add({x: i-180, y: i/2-90});
-  // }
-
-  self.add({y: 33.868, x:151.211});
-  self.add({y: -34.0522, x:-118.24});
-  self.add({y:-40.71, x: -74.0064});
-
-  opts.socket.bind(
-    'geo', 
-    function(data){
-      self.add(data);
-    });
-
-}
-
-
-
