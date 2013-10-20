@@ -45,6 +45,9 @@ module.exports = straw.node.extend({
     var trending = [];
 
     for(var hashtag in this.hashtags) {
+      if(hashtag === ''){
+        continue;
+      }
       trending.push({
         hashtag: hashtag,
         count :this.hashtags[hashtag]
