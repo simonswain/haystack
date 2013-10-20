@@ -6,9 +6,7 @@ module.exports = function(grunt) {
     pkg: '<json:package.json>',
     jshint: {
       files: ['Gruntfile.js',
-              'test/**/*.js',
-              'public/js/**/*.js',
-              'routes/**/*.js'
+              'public/js/**/*.js'
              ],
       options: {
         curly: true,
