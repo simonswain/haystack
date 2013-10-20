@@ -60,7 +60,7 @@ var Langs = function(opts){
     _.each(self.data, function(q){
       self.r
         .rect(x - (w/2), h-(h*(q.share/f))+8, w, (h*(q.share/f)))
-        .attr({fill: '#fff'});
+        .attr({fill: '#fff', stroke: false});
 
       self.r.text(x, h + w + 8, q.lang).attr({fill: '#0ff'});
       x += w*2;
