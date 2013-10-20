@@ -58,7 +58,7 @@ module.exports = straw.node.extend({
       return b.count - a.count;
     });
 
-    trending = trending.slice(0, 5);
+    trending = trending.slice(0, 25);
 
     this.changed = false;
     this.output(trending);
