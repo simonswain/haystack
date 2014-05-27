@@ -1,6 +1,4 @@
 var straw = require('straw');
-
-var util = require('util');
 var Twitter = require('twitter');
 
 module.exports = straw.node({
