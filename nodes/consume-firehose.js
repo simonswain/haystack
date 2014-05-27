@@ -3,15 +3,13 @@ var straw = require('straw');
 var util = require('util');
 var Twitter = require('twitter');
 
-module.exports = straw.node.extend({
-  title: 'Consume Firehose',
+module.exports = straw.node({
   initialize: function(opts, done){
     this.twit = new Twitter(opts.twitter);
-    process.nextTick(done);
+    done();
   },
-  run: function(done) {
+  start: function(done) {
     var self = this;
-    
     this.twit.stream(
       'statuses/sample', 
       function(stream) {
@@ -31,18 +29,16 @@ module.exports = straw.node.extend({
               return;
             }
 
-            self.output(data);
-            
-          });
+            self.output(data);            
 
+          });
         stream.on(
           'error', 
           function(err) {
             console.log(err);
           });
       });
-    
-    done(false);
+    done();
   }
 });
 

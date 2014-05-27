@@ -1,14 +1,13 @@
 var straw = require('straw');
 
-module.exports = straw.node.extend({
-  title: 'Catch Hashtags',
+module.exports = straw.node({
   hashtags: {},
   changed: false,
   opts: {interval: 1000},
   initialize: function(opts, done) {
     var self = this;
     this.opts.interval = opts && opts.interval || 1000;
-    process.nextTick(done);
+    done();
   },
   process: function(x, done) {
     var self = this;
@@ -24,17 +23,17 @@ module.exports = straw.node.extend({
     this.changed = true;
     done();
   },
-  run: function(done) {
+  start: function(done) {
     var self = this;
     var fn = function() {
       self.count();
     };
     this.timer = setInterval(fn, this.opts.interval);
-    done(false);
+    done();
   },
   stop: function(done) {
     clearInterval(this.timer);
-    done(false);
+    done();
   },
   count: function() {
 

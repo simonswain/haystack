@@ -1,7 +1,7 @@
 var straw = require('straw');
 var _ = require('underscore');
-module.exports = straw.node.extend({
-  title: 'Catch Langs',
+
+module.exports = straw.node({
   langs: {},
   total: 0,
   changed: false,
@@ -23,17 +23,17 @@ module.exports = straw.node.extend({
     this.changed = true;
     done();
   },
-  run: function(done) {
+  start: function(done) {
     var self = this;
     var fn = function() {
       self.ping();
     };
     this.timer = setInterval(fn, this.opts.interval);
-    done(false);
+    done();
   },
   stop: function(done) {
     clearInterval(this.timer);
-    done(false);
+    done();
   },
   ping: function() {
     var self = this;

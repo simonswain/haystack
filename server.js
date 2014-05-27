@@ -28,14 +28,17 @@ var langs = [];
 var hashtags = [];
 
 var taps = {
-  langs: new straw.tap({
-    'input':'client-langs',
+  langs: straw.tap({
+    input:'client-langs',
+    redis: config.redis
   }),
-  geo: new straw.tap({
-    'input':'client-geo',
+  geo: straw.tap({
+    input:'client-geo',
+    redis: config.redis
   }),
-  hashtags: new straw.tap({
-    'input':'client-hashtags',
+  hashtags: straw.tap({
+    input:'client-hashtags',
+    redis: config.redis
   })
 };
 
@@ -56,6 +59,7 @@ taps.geo.on('message', function(msg) {
     geos.shift();
   }
 });
+
 
 io.sockets.on('connection', function (socket) {
   for(var i=0, ii=geos.length; i<ii; i++){

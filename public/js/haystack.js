@@ -52,6 +52,10 @@ var Langs = function(opts){
   /*jshint newcap:true */
 
   this.render = function(){
+    if(self.data.length === 0){
+      return;
+    }
+
     var h = this.h - 24;
     this.r.clear();
     var x = 16;
