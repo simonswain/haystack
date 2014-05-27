@@ -24,11 +24,7 @@ module.exports = straw.node({
     done();
   },
   start: function(done) {
-    var self = this;
-    var fn = function() {
-      self.ping();
-    };
-    this.timer = setInterval(fn, this.opts.interval);
+    this.timer = setInterval(this.ping.bind(this), this.opts.interval);
     done();
   },
   stop: function(done) {
