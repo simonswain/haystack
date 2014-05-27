@@ -11,8 +11,6 @@ var opts = {
   redis: config.redis
 };
 
-
-
 var cls = function(){
   process.stdout.write('\u001B[2J\u001B[0;0f');
 };
@@ -53,11 +51,6 @@ topo.add([{
   input: 'hashtags',
   output: 'client-hashtags'
 }, {
-  id: 'client-hashtags',
-  node: 'passthru',
-  input: 'trending-hashtags',
-  output: 'client-hashtags'
-}, {
   id: 'client-langs',
   node: 'passthru',
   input: 'langs',
@@ -79,6 +72,7 @@ var stats = function(){
 var interval = setInterval(stats, 1000);
 
 process.on( 'SIGINT', function() {
+  clearInterval(interval);
   topo.destroy(function(){
     console.log( 'Finished.' );
   });

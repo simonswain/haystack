@@ -8,6 +8,10 @@ module.exports = straw.node({
     this.twit = new Twitter(opts.twitter);
     done();
   },
+  stop: function(done){
+    this.twit.stream.destroy();
+    done();
+  },
   start: function(done) {
     var self = this;
     this.twit.stream(
