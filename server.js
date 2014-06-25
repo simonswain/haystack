@@ -9,8 +9,9 @@ var config = require('./config/config.js');
 var straw = require('straw');
 
 var app = express();
-var server = app.listen(config.server.port);
-var io = require('socket.io').listen(server,{log: false});
+var server = require('http').Server(app).listen(config.server.port);
+
+var io = require('socket.io')(server);
 
 app.configure(function(){
   app.use(express.logger('dev'));
@@ -44,16 +45,16 @@ var taps = {
 
 taps.langs.on('message', function(msg) {
   langs = msg;
-  io.sockets.emit('langs', msg);
+  io.emit('langs', msg);
 });
 
 taps.hashtags.on('message', function(msg) {
   hashtags = msg;
-  io.sockets.emit('hashtags', msg);
+  io.emit('hashtags', msg);
 });
 
 taps.geo.on('message', function(msg) {
-  io.sockets.emit('geo', msg);
+  io.emit('geo', msg);
   geos.push(msg);
   if(geos.length > geo_max){
     geos.shift();
@@ -61,12 +62,12 @@ taps.geo.on('message', function(msg) {
 });
 
 
-io.sockets.on('connection', function (socket) {
+io.on('connection', function (socket) {
   for(var i=0, ii=geos.length; i<ii; i++){
-    io.sockets.emit('geo', geos[i]);
+    io.emit('geo', geos[i]);
   }
-  io.sockets.emit('langs', langs);
-  io.sockets.emit('hashtags', hashtags);
+  io.emit('langs', langs);
+  io.emit('hashtags', hashtags);
 });
 
 console.log("Haystack server listening on port 3000");
