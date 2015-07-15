@@ -1,44 +1,34 @@
 var straw = require('straw');
-var Twitter = require('twitter');
+var Twit = require('twit');
 
 module.exports = straw.node({
-  initialize: function(opts, done){
-    this.twit = new Twitter(opts.twitter);
+  initialize: function (opts, done) {
+    this.twit = new Twit(opts.twitter);
     done();
   },
-  stop: function(done){
+  stop: function (done) {
     this.twit.stream.destroy();
     done();
   },
-  start: function(done) {
+  start: function (done) {
     var self = this;
-    this.twit.stream(
-      'statuses/sample', 
-      function(stream) {
-        stream.on(
-          'data', 
-          function(data) {
-
-            if(!data.hasOwnProperty('id')){
-              return;
-            }
-
-            if(!data.hasOwnProperty('text')){
-              return;
-            }
-
-            if(!data.hasOwnProperty('user')){
-              return;
-            }
-
-            self.output(data);            
-
-          });
-        stream.on(
-          'error', 
-          function(err) {
-            console.log(err);
-          });
+    var s = this.twit.stream('statuses/sample');
+    s.on('tweet', function (data) {
+      if (!data.hasOwnProperty('id')) {
+        return;
+      }
+      if (!data.hasOwnProperty('text')) {
+        return;
+      }
+      if (!data.hasOwnProperty('user')) {
+        return;
+      }
+      self.output(data);
+    });
+    s.on(
+      'error',
+      function (err) {
+        console.log(err);
       });
     done();
   }
