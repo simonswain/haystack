@@ -1,3 +1,4 @@
+/// <reference path="typings/node/node.d.ts"/>
 // Haystack 0.0.2
 // (c) 2014 Simon Swain
 // Haystack may be freely distributed under the MIT license.
