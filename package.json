@@ -25,11 +25,11 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "straw": "~0.3.0",
     "express": "~3.3.4",
-    "twitter": "~0.2.9",
-    "underscore": "~1.6.0",
-    "socket.io": "^1.0.6"
+    "socket.io": "^1.0.6",
+    "straw": "~0.3.0",
+    "twit": "^2.1.0",
+    "underscore": "~1.6.0"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
